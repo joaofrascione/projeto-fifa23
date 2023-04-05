@@ -9,7 +9,7 @@ function App() {
         <Row>
            PROJETO
         </Row>
-        
+        <Jogador/>
     </div>
   );
 }
