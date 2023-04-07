@@ -38,7 +38,7 @@ function Ligas(){
         <div>
             <ul>
                 {ligas.map((liga) => {  
-                    return <li><NavLink to={`/Nacao/${liga.id}`} key={liga.id}>{liga.name}</NavLink></li>
+                    return <li><NavLink to={`/Liga/${liga.id}`} key={liga.id}>{liga.name}</NavLink></li>
                 })
                 }
             </ul>
