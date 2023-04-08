@@ -1,30 +1,30 @@
 import api from '../apis/api-futebol'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Ligas(){
-
+function Nacoes(){
+    
     const [page, setPage] = useState(1);
-    const [ligas, setLigas] = useState([ ]);
+    const [nacao, setNacao] = useState([ ]);
 
     useEffect(() => {
-        api.get(`/leagues?page=${page}`, {
+        api.get(`/nations?page=${page}`, {
             headers: {
              'x-auth-token': '5721fe41-431e-47aa-b74f-45ce383e281d'   
             }
         }).then((result) => {
-            setLigas(result.data.items)
+            setNacao(result.data.items)
         })
 
     }, [page])
 
     const proxima = () => {
-        if(page === 3){
+        if(page === 8){
             alert('Você já está na página final')
         }else{
             setPage(page + 1)
         }
-
+        
     }
     const anterior = () => {
         if(page === 1){
@@ -37,15 +37,15 @@ function Ligas(){
     return (
         <div>
             <ul>
-                {ligas.map((liga) => {  
-                    return <li key={liga.id}><NavLink to={`/Liga/${liga.id}`} >{liga.name}</NavLink></li>
+                {nacao.map((pais) => {  
+                    return <li key={pais.id}><Link to={`/nacao/${pais.id}`} >{pais.name}</Link></li>
                 })
                 }
             </ul>
             <button onClick={anterior}>Anterior</button>       
             <button onClick={proxima}>Próxima</button>
         </div>
-
+        
     )
 }
-export default Ligas;
+export default Nacoes

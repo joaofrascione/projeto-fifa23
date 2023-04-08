@@ -1,17 +1,18 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row } from 'react-bootstrap';
-import Jogador from './components/Jogador';
-import Ligas from './components/Ligas';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Nacao from './components/Nacao';
+import Jogador from './components/Jogador'
 
 function App() {
   return (
     <div className="App">
-        <Row>
-      
-        </Row>
-
-        <Ligas />
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/nacao/:nacaoId' element={<Nacao/>}/>
+          </Routes>              
     </div>
   );
 }
