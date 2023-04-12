@@ -38,9 +38,14 @@ function Ligas(){
         <div>
             <ul>
                 {ligas.map((liga) => {  
-                    return <li key={liga.id}><Link to={`/times/${liga.id}`} >{liga.name}</Link></li>
-                })
-                }
+                    const imagePath = require(`../images/leagues/${liga.id}.png`);
+                    return (
+                        <li key={liga.id}>
+                            <img src={imagePath} alt={liga.name} style={{width: '20px', height: '20px' }} />
+                            <Link to={`/times/${liga.id}`} >{liga.name}</Link>
+                        </li>
+                    );
+                })}
             </ul>
             <button onClick={anterior}>Anterior</button>       
             <button onClick={proxima}>Próxima</button>
