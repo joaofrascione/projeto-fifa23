@@ -1,6 +1,6 @@
 import api from '../apis/api-futebol'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Ligas(){
 
@@ -38,7 +38,7 @@ function Ligas(){
         <div>
             <ul>
                 {ligas.map((liga) => {  
-                    return <li key={liga.id}><NavLink to={`/Liga/${liga.id}`} >{liga.name}</NavLink></li>
+                    return <li key={liga.id}><Link to={`/times/${liga.id}`} >{liga.name}</Link></li>
                 })
                 }
             </ul>

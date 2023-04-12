@@ -36,7 +36,8 @@ function Nacoes(){
     }
     return (
         <div>
-            <ul>
+       
+            <ul>        
                 {nacao.map((pais) => {  
                     return <li key={pais.id}><Link to={`/nacao/${pais.id}`} >{pais.name}</Link></li>
                 })
