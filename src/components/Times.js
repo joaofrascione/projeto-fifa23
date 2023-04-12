@@ -43,6 +43,7 @@ function Times() {
         <Col>
                 <ul>
                     <li>{equipe.name}</li>
+                    <li><img src={require(`../images/clubs/${equipe.id}.png`)} alt={equipe.name} style={{width: '100px', height: '80px' }} /></li>
                     <Link to={`/time/${equipe.id}`}><button>Ver Jogadores dessa equipe</button></Link>
                 </ul>
         </Col>
