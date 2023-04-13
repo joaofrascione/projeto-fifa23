@@ -1,9 +1,10 @@
 import Nacoes from '../components/Nacoes';
 import Ligas from '../components/Ligas';
-// import Ligas from '../components/Ligas';
 import { Row, Col } from 'react-bootstrap';
 function Home(){
      return (
+    <div>
+     
      <Row>
         <Col>
             <Nacoes/>
@@ -11,6 +12,8 @@ function Home(){
         <Col>
             <Ligas/>
         </Col>
-    </Row>)
+      </Row>
+    </div>
+    )
 }
 export default Home

@@ -16,11 +16,6 @@ function Jogador({ infos }){
             }).then((result) => {
                 setNacao(result.data.nation)
             })
-        }
-    }, [infos])
-
-    useEffect(() => {
-        if(infos.id !== undefined){
             api.get(`/clubs/${infos.club}`, {
                 headers: {
                 'x-auth-token': '5721fe41-431e-47aa-b74f-45ce383e281d'   
@@ -28,11 +23,6 @@ function Jogador({ infos }){
             }).then((result) => {
                 setClube(result.data.club)
             })
-        }
-    }, [infos])
-    
-    useEffect(() => {
-        if(infos.id !== undefined){
             api.get(`/leagues/${infos.league}`, {
                 headers: {
                 'x-auth-token': '5721fe41-431e-47aa-b74f-45ce383e281d'   
