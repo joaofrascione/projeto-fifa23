@@ -35,20 +35,24 @@ function Ligas(){
         }        
     }
     return (
-        <div>
-            <ul>
-                {ligas.map((liga) => {  
+        <div className='esp'>
+            <h1 className='titulo'>Encontre pela liga selecionada abaixo</h1>
+            <ul className='lista'>
+                {ligas.map((liga) => {
+                    if(liga.id === 0) return   
                     const imagePath = require(`../images/leagues/${liga.id}.png`);
                     return (
-                        <li key={liga.id}>
-                            <img src={imagePath} alt={liga.name} style={{width: '20px', height: '20px' }} />
-                            <Link to={`/times/${liga.id}`} >{liga.name}</Link>
-                        </li>
+                        <Link to={`/times/${liga.id}`} >
+                            <li key={liga.id}>
+                                <div><img src={imagePath} alt={liga.name} style={{width: '50%', height: 'auto' }} /></div>                           
+                                {liga.name}
+                            </li>
+                        </Link>    
                     );
                 })}
             </ul>
-            <button onClick={anterior}>Anterior</button>       
-            <button onClick={proxima}>Próxima</button>
+            <button className='botao' onClick={anterior}>Anterior</button>       
+            <button className='botao' onClick={proxima}>Próxima</button>
         </div>
 
     )

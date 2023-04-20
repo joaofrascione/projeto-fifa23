@@ -10,6 +10,7 @@ function Nacao(){
     const [page, setPage] = useState(1);
     const [jogadorSelecionado, setJogadorSelecionado] = useState({});
     const [jogadores, setJogadores] = useState([ ]);
+    const [nacao, setNacao] = useState([ ]);
     const { nacaoId } = useParams();
       
 
@@ -53,17 +54,27 @@ function Nacao(){
     } 
     return (
         <div>
+        <Row></Row>
         <Row>
             <Col>
-                <ul>
+                <ul className='lista-jogadores'>
+                    <li >
+                        <p className='titulo-jogador'>POSIÇÃO</p>
+                        <p className='titulo-jogador'>NOME</p>
+                        <p className='titulo-jogador'>OVERALL</p>
+                    </li>
                     {
                         jogadores.map((jogador) => {  
-                        return <li key={jogador.id} onClick={() =>{selecionar(jogador)}}>{jogador.name}</li>
+                        return <li className='item-jogador' key={jogador.id} onClick={() =>{selecionar(jogador)}}>
+                            <p>{jogador.position}</p>
+                            <p>{jogador.name}</p>
+                            <p>{jogador.rating}</p>  
+                        </li>
                     })
                     }
                 </ul>
-                <button onClick={anterior}>Anterior</button>       
-                <button onClick={proxima}>Próxima</button>
+                <button className='botao' onClick={anterior}>Anterior</button>       
+                <button className='botao' onClick={proxima}>Próxima</button>
             </Col>
             <Col>
                 <Jogador infos={jogadorSelecionado}/>

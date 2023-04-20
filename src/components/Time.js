@@ -54,17 +54,27 @@ function Time(){
         <div>
         <Row>
             <Col>
-                <ul>
+                <h1 className='titulo'>Selecione o jgoador desejado e descubra maiores informações</h1>
+                <ul className='lista-jogadores'>
+                    <li >
+                        <p className='titulo-jogador'>POSIÇÃO</p>
+                        <p className='titulo-jogador'>NOME</p>
+                        <p className='titulo-jogador'>OVERALL</p>
+                    </li>
                     {
                         jogadores.map((jogador) => {  
-                        return <li key={jogador.id} onClick={() =>{selecionar(jogador)}}>{jogador.position} {jogador.name} {jogador.rating}</li>
+                        return <li key={jogador.id} className='item-jogador' onClick={() =>{selecionar(jogador)}}> 
+                            <p>{jogador.position}</p>
+                            <p>{jogador.name}</p>
+                            <p>{jogador.rating}</p>  </li>
                     })
                     }
                 </ul>
-                <button onClick={anterior}>Anterior</button>       
-                <button onClick={proxima}>Próxima</button>
+                <button className='botao' onClick={anterior}>Anterior</button>       
+                <button className='botao' onClick={proxima}>Próxima</button>
             </Col>
             <Col>
+                <h1 className='titulo'>Dados do jogador Selecionado </h1>
                 <Jogador infos={jogadorSelecionado}/>
             </Col>
             
