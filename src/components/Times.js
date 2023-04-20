@@ -9,7 +9,7 @@ function Times() {
   const [times, setTimes] = useState([]);
   const [equipe, setEquipe] = useState({});
   const { ligaId } = useParams();
-
+  
   useEffect(() => {
     const buscarTimes = async () => {
       const arrTimes = [];
@@ -31,20 +31,44 @@ function Times() {
   const selecionar = (equipe) =>{
     setEquipe(equipe)
 } 
+
+const verificarImage = (equipe) => {
+  try{
+     return <img src={require(`../images/clubs/${equipe.id}.png`)} alt={equipe.name} style={{width: '100px', height: 'auto', margin: '10px auto'}} />
+  }catch{
+    return <img src={require(`../images/clubs/sem-imagem.png`)} alt={equipe.name} style={{width: '100px', height: 'auto' }} />
+  }
+}
+
+const verificarExistencia = (equipe) => {
+  if(!equipe.id) return
+  return <Link to={`/time/${equipe.id}`}><button className='botao ver-jogadores'>Ver Jogadores dessa equipe</button></Link>
+}
+
   return (
     <Row>
         <Col>
-            <ul>
+            <h1 className="titulo">Selecione o time e descubra quais jogadores atuam por ele </h1>
+            <ul className="lista">
                 {times.map((equipe) => {
-                    return <li key={equipe.id} onClick={() =>{selecionar(equipe)}}>{equipe.name}</li>;
+                    return <li key={equipe.id} onClick={() =>{selecionar(equipe)}}>
+                    <div>{verificarImage(equipe)}</div>
+                    {equipe.name} 
+                    </li>;
                 })}
             </ul>
         </Col>
-        <Col>
-                <ul>
-                    <li>{equipe.name}</li>
-                    <li><img src={require(`../images/clubs/${equipe.id}.png`)} alt={equipe.name} style={{width: '100px', height: '80px' }} /></li>
-                    <Link to={`/time/${equipe.id}`}><button>Ver Jogadores dessa equipe</button></Link>
+        <Col>   
+                <h1 className="titulo">Time selecionado clique no botão para descobrir seus jogadores</h1>
+                <ul className="lista">
+                <li className="item-lista">
+                      <div className="card-time-unico">
+                        <p>{equipe.name}</p>
+                        {verificarImage(equipe)} 
+                        {verificarExistencia(equipe)}
+                      </div>
+                    </li>
+                
                 </ul>
         </Col>
     </Row> 

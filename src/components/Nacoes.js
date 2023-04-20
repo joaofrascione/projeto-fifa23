@@ -56,6 +56,7 @@ const nomeParaCodigo = {
     'Cocos Islands': 'CC',
     'Colombia': 'CO',
     'Comoros': 'KM',
+    "Côte d'Ivoire" : 'CI',
     'Cook Islands': 'CK',
     'Costa Rica': 'CR',
     'Croatia': 'HR',
@@ -79,6 +80,7 @@ const nomeParaCodigo = {
     'Falkland Islands': 'FK',
     'Faroe Islands': 'FO',
     'Fiji': 'FJ',
+    'England': 'GB-ENG',
     'Finland': 'FI',
     'France': 'FR',
     'French Guiana': 'GF',
@@ -305,23 +307,25 @@ function Nacoes(){
         }        
     }
     return (
-        <div>
-       
-       <ul>
-            {nacao.map((pais) => {
-                const codigo = nomeParaCodigo[pais.name] || '';
-                return (
-                    <li key={pais.id}>
+        <div className='esp'>
+            <h1 className='titulo'>Selecione a nação desejada e descubra todos os jogadores que a representam</h1>
+            <ul className='lista'>
+                {nacao.map((pais) => {
+                    const codigo = nomeParaCodigo[pais.name] || '';
+                    return (
                         <Link to={`/nacao/${pais.id}`}>
-                            <WorldFlag code={codigo} style={{width: '20px', height: '20px' }} /> 
-                            {pais.name}
+                            <li key={pais.id}>
+                            
+                                <div><WorldFlag code={codigo} style={{width: '50%', height: 'auto' }} /></div>
+                                <p>{pais.name}</p>
+                            
+                            </li>
                         </Link>
-                    </li>
-                )
-            })}
-        </ul>
-            <button onClick={anterior}>Anterior</button>       
-            <button onClick={proxima}>Próxima</button>
+                        )
+                    })}
+            </ul>
+            <button className='botao' onClick={anterior}>Anterior</button>       
+            <button className='botao' onClick={proxima}>Próxima</button>
         </div>
         
     )
