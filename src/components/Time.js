@@ -9,6 +9,7 @@ function Time(){
     const [page, setPage] = useState(1);
     const [jogadorSelecionado, setJogadorSelecionado] = useState({});
     const [jogadores, setJogadores] = useState([ ]);
+    const [time, setTime] = useState([ ]);
     const { timeId } = useParams();
 
     const headers = {
@@ -27,6 +28,13 @@ function Time(){
             .catch(error => {
                 console.error(error);
             })
+        api.get(`/clubs/${timeId}`, {
+            headers: {
+                'x-auth-token': '5721fe41-431e-47aa-b74f-45ce383e281d'   
+            }
+        }).then((result) => {
+                setTime(result)
+        })    
     }, [page])
 
 
@@ -54,7 +62,7 @@ function Time(){
         <div>
         <Row>
             <Col>
-                <h1 className='titulo'>Selecione o jgoador desejado e descubra maiores informações</h1>
+                <h1 className='titulo'><span>{time.data?.club.name}</span></h1>
                 <ul className='lista-jogadores'>
                     <li >
                         <p className='titulo-jogador'>POSIÇÃO</p>
