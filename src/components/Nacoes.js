@@ -2,6 +2,8 @@ import api from '../apis/api-futebol'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import WorldFlag from 'react-world-flags';
+import Loading from "./Loading";
+
 
 
 const nomeParaCodigo = {
@@ -275,7 +277,7 @@ const nomeParaCodigo = {
   };
 
 function Nacoes(){
-    
+    const [removerLoad, setremoverLoad] = useState(false);
     const [page, setPage] = useState(1);
     const [nacao, setNacao] = useState([ ]);
 
@@ -286,6 +288,7 @@ function Nacoes(){
             }
         }).then((result) => {
             setNacao(result.data.items)
+            setremoverLoad(true)
         })
 
     }, [page])
@@ -324,6 +327,7 @@ function Nacoes(){
                         )
                     })}
             </ul>
+            {!removerLoad && <Loading />}
             <button className='botao' onClick={anterior}>Anterior</button>       
             <button className='botao' onClick={proxima}>Próxima</button>
         </div>

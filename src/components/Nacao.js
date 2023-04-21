@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Jogador from './Jogador';
+import Loading from "./Loading";
 
 function Nacao(){
     
@@ -12,7 +13,7 @@ function Nacao(){
     const [jogadores, setJogadores] = useState([ ]);
     const [nacao, setNacao] = useState([ ]);
     const { nacaoId } = useParams();
-      
+    const [removerLoad, setremoverLoad] = useState(false);  
 
     const headers = {
         'X-AUTH-TOKEN': '5721fe41-431e-47aa-b74f-45ce383e281d',
@@ -26,6 +27,7 @@ function Nacao(){
         api.post(`https://futdb.app/api/players/search?page=${page}`, data, { headers })
         .then(response => {
                 setJogadores(response.data.items)
+                setremoverLoad(true)
             })
             .catch(error => {
                 console.error(error);
@@ -73,6 +75,7 @@ function Nacao(){
                     })
                     }
                 </ul>
+                {!removerLoad && <Loading />}
                 <button className='botao' onClick={anterior}>Anterior</button>       
                 <button className='botao' onClick={proxima}>Próxima</button>
             </Col>
