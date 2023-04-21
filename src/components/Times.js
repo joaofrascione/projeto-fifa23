@@ -8,9 +8,18 @@ import { Link } from 'react-router-dom';
 function Times() {
   const [times, setTimes] = useState([]);
   const [equipe, setEquipe] = useState({});
+  const [liga, setLiga] = useState({});
   const { ligaId } = useParams();
   
   useEffect(() => {
+    api.get(`/leagues/${ligaId}`, {
+      headers: {
+       'x-auth-token': '5721fe41-431e-47aa-b74f-45ce383e281d'   
+      }
+    }).then((result) => {
+      setLiga(result)
+    })
+
     const buscarTimes = async () => {
       const arrTimes = [];
       for (let i = 1; i <= 35; i++) {
@@ -48,7 +57,7 @@ const verificarExistencia = (equipe) => {
   return (
     <Row>
         <Col>
-            <h1 className="titulo">Selecione o time e descubra quais jogadores atuam por ele </h1>
+            <h1 className="titulo"><span>{ liga.data?.league.name}</span> </h1>
             <ul className="lista">
                 {times.map((equipe) => {
                     return <li key={equipe.id} onClick={() =>{selecionar(equipe)}}>
