@@ -1,11 +1,13 @@
 import api from '../apis/api-futebol'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import Loading from "./Loading";
 
 function Ligas(){
 
     const [page, setPage] = useState(1);
     const [ligas, setLigas] = useState([ ]);
+    const [removerLoad, setremoverLoad] = useState(false);
 
     useEffect(() => {
         api.get(`/leagues?page=${page}`, {
@@ -14,6 +16,7 @@ function Ligas(){
             }
         }).then((result) => {
             setLigas(result.data.items)
+            setremoverLoad(true)
         })
 
     }, [page])
@@ -51,6 +54,7 @@ function Ligas(){
                     );
                 })}
             </ul>
+            {!removerLoad && <Loading />}
             <button className='botao' onClick={anterior}>Anterior</button>       
             <button className='botao' onClick={proxima}>Próxima</button>
         </div>

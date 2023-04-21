@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Loading from "./Loading";
 
 function Times() {
   const [times, setTimes] = useState([]);
   const [equipe, setEquipe] = useState({});
   const [liga, setLiga] = useState({});
+  const [removerLoad, setremoverLoad] = useState(false);
   const { ligaId } = useParams();
   
   useEffect(() => {
@@ -33,6 +35,7 @@ function Times() {
         arrTimes.push(...timesFiltrado)            
       }
       setTimes(arrTimes)
+      setremoverLoad(true)
     };
     buscarTimes();
     
@@ -65,12 +68,14 @@ const verificarExistencia = (equipe) => {
                     {equipe.name} 
                     </li>;
                 })}
+                {!removerLoad && <Loading />}
             </ul>
+            
         </Col>
         <Col>   
                 <h1 className="titulo">Time selecionado clique no botão para descobrir seus jogadores</h1>
                 <ul className="lista">
-                <li className="item-lista">
+                  <li className="item-lista">
                       <div className="card-time-unico">
                         <p>{equipe.name}</p>
                         {verificarImage(equipe)} 
@@ -79,6 +84,7 @@ const verificarExistencia = (equipe) => {
                     </li>
                 
                 </ul>
+               
         </Col>
     </Row> 
   );
