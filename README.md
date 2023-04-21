@@ -11,7 +11,7 @@ Alunos da **Ironhack**:
 
 <img src="https://pbs.twimg.com/media/FXtn2fVVUAIF_0F?format=jpg&name=large" width="50%" height="50%">
 
-Aperte [aqui](https://github.com/joaofrascione/projeto-fifa23) para conhecer nosso projeto
+Aperte [aqui](https://dadosfifa23.netlify.app/) para conhecer nosso projeto
 
 
 ---
